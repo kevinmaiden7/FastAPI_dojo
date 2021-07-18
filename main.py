@@ -10,3 +10,8 @@ def root(): # Define the path operation function
 @app.get("/name")
 def get_name(input_name):
     return {"message": "Hello " + input_name + ", Welcome!"}
+
+@app.get("/two_power")
+def power(number:int):
+    return {"result": 2**number}
+    
