@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from message import regards
 from pydantic import BaseModel
 
@@ -14,6 +14,8 @@ def get_name(input_name):
 
 @app.get("/two_power")
 def two_power(number: int):
+    if number < 0:
+        raise HTTPException(status_code=400, detail="Must enter a positive integer or 0")
     return {"result": 2**number}
 
 @app.get("/three_power/{power}")
