@@ -16,6 +16,10 @@ def get_name(input_name):
 def two_power(number: int):
     return {"result": 2**number}
 
+@app.get("/three_power/{power}")
+def three_power(power: int):
+    return {"result": 3**power}
+
 class inputs(BaseModel):
     base: int
     power: int
