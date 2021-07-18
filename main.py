@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from message import regards
+from pydantic import BaseModel
 
 app = FastAPI() # Create a FastAPI instance
 
@@ -12,6 +13,16 @@ def get_name(input_name):
     return {"message": "Hello " + input_name + ", Welcome!"}
 
 @app.get("/two_power")
-def power(number:int):
+def two_power(number: int):
     return {"result": 2**number}
-    
+
+class inputs(BaseModel):
+    base: int
+    power: int
+
+@app.post("/power")
+def power(data: inputs):
+    return ({
+      "data": [data.base, data.power],
+      "result": data.base**data.power  
+    })
