@@ -8,7 +8,7 @@ app = FastAPI() # Create a FastAPI instance
 def root(): # Define the path operation function
     return {"message": regards("root")} # Return a JSON
 
-@app.get("/name")
+@app.get("/name", description="Return hello message to the user")
 def get_name(input_name):
     return {"message": "Hello " + input_name + ", Welcome!"}
 
